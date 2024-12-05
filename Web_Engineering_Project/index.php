@@ -1,5 +1,20 @@
 <?php
+// Database connection using PDO
+require 'database_connection.php';
 
+// Array of specific product IDs to fetch
+$productIds = [88, 89, 76, 77, 78, 79, 80, 81]; // Replace with the IDs of the products you want to display
+
+// Fetch products by product_id
+try {
+    $placeholders = rtrim(str_repeat('?,', count($productIds)), ',');
+    $sql = "SELECT * FROM medical_products WHERE product_id IN ($placeholders)";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute($productIds);
+    $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    die("Error fetching products: " . $e->getMessage());
+}
 ?>
 
 <!DOCTYPE html>
@@ -12,37 +27,38 @@
         <link rel="shortcut icon" type="image" href="img/short_logo.png">
         <title>Home</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-        <link rel="stylesheet" href="style.css?v=24">
-    </head>
+        <link rel="stylesheet" href="style.css?v=27">
 
-    <script>
-        async function addToCart(productId) {
-            try {
-                const response = await fetch(`add_to_cart.php?product_id=${productId}`, {
-                    method: 'GET'
-                });
-                const result = await response.text();
-                if (result === 'success') {
-                    showNotification("Product added to cart successfully!");
-                } else {
-                    showNotification("Failed to add product to cart.", true);
+        <script>
+            async function addToCart(productId) {
+                try {
+                    const response = await fetch(`add_to_cart.php?product_id=${productId}`, {
+                        method: 'GET'
+                    });
+                    const result = await response.text();
+                    if (result === 'success') {
+                        showNotification("Product added to cart successfully!");
+                    } else {
+                        showNotification("Failed to add product to cart.", true);
+                    }
+                } catch (error) {
+                    console.error("Error:", error);
+                    showNotification("An error occurred.", true);
                 }
-            } catch (error) {
-                console.error("Error:", error);
-                showNotification("An error occurred.", true);
             }
-        }
 
-        function showNotification(message, isError = false) {
-            const notification = document.getElementById('notification');
-            notification.textContent = message;
-            notification.style.backgroundColor = isError ? '#e63946' : '#4caf50';
-            notification.style.display = 'block';
-            setTimeout(() => {
-                notification.style.display = 'none';
-            }, 3000);
-        }
-    </script>
+            function showNotification(message, isError = false) {
+                const notification = document.getElementById('notification');
+                notification.textContent = message;
+                notification.style.backgroundColor = isError ? '#e63946' : '#4caf50';
+                notification.style.display = 'block';
+                setTimeout(() => {
+                    notification.style.display = 'none';
+                }, 3000);
+            }
+        </script>
+
+    </head>
 
     <body>
 
@@ -98,8 +114,8 @@
                 <h6>Blood Bank</h6>
             </div>
             <div class="fe-box">
-                <img src="img/features/f4.png" alt="ambulance service">
-                <h6>Ambulance Service</h6>
+                <img src="img/features/f4.png" alt="ambulance">
+                <h6>Ambulance</h6>
             </div>
             <div class="fe-box">
                 <img src="img/features/f5.png" alt="telimedicine">
@@ -119,133 +135,25 @@
 
             <div class="product-container">
 
-                <div class="product">
-                    
-                    <img src="img/products/f1.png" alt="first-aid-kit">
+                <?php if (empty($products)): ?>
+                    <p>No products found in this category.</p>
+                <?php else: ?>
+                    <?php foreach ($products as $product): ?>
+                        <div class="product">
+                        <img src="<?php echo $product['product_image']; ?>" alt="Product Image">
+                            
+                            <div class="description">
+                                <span><?php echo htmlspecialchars($product['product_brand']); ?></span>
+                                <h5><?php echo htmlspecialchars($product['product_name']); ?></h5>
+                                <h4><?php echo htmlspecialchars($product['product_price']); ?> <span class="taka">৳</span></h4>
+                            </div>
 
-                    <div class="description">
-                        <span>First Aid Only</span>
-                        <h5>Aluminum First Aid Kit</h5>
-                        <h4>2500 Taka</h4>                        
-                    </div>
-
-                    <a href="javascript:void(0);" onclick="addToCart(<?= $product['product_id'] ?>)" class="add-to-cart-btn">
-                        <i class="fas fa-plus"></i>
-                    </a>
-
-                </div>
-
-                <div class="product">
-                    
-                    <img src="img/products/f2.png" alt="first-aid-kit">
-
-                    <div class="description">
-                        <span>Zeal Mercury Thermometer</span>
-                        <h5>DT103 Electronic Thermometer</h5>
-                        <h4>450 Taka</h4>                        
-                    </div>
-
-                    <a href="javascript:void(0);" onclick="addToCart(<?= $product['product_id'] ?>)" class="add-to-cart-btn">
-                        <i class="fas fa-plus"></i>
-                    </a>
-
-                </div>
-
-                <div class="product">
-                    
-                    <img src="img/products/f3.png" alt="first-aid-kit">
-
-                    <div class="description">
-                        <span>Omron</span>
-                        <h5>Digital Blood Pressure Monitor</h5>
-                        <h4>1300 Taka</h4>                        
-                    </div>
-
-                    <a href="javascript:void(0);" onclick="addToCart(<?= $product['product_id'] ?>)" class="add-to-cart-btn">
-                        <i class="fas fa-plus"></i>
-                    </a>
-
-                </div>
-
-                <div class="product">
-                    
-                    <img src="img/products/f4.png" alt="first-aid-kit">
-
-                    <div class="description">
-                        <span>YonkerMed</span>
-                        <h5>Fingertip YK-80A Pulse Rate Oximeter</h5>
-                        <h4>1950 Taka</h4>                        
-                    </div>
-
-                    <a href="javascript:void(0);" onclick="addToCart(<?= $product['product_id'] ?>)" class="add-to-cart-btn">
-                        <i class="fas fa-plus"></i>
-                    </a>
-
-                </div>
-
-                <div class="product">
-                    
-                    <img src="img/products/f5.png" alt="first-aid-kit">
-
-                    <div class="description">
-                        <span>Accu-Chek</span>
-                        <h5>Accu-Chek Active Blood Glucose Monitoring System</h5>
-                        <h4>3199 Taka</h4>                        
-                    </div>
-
-                    <a href="javascript:void(0);" onclick="addToCart(<?= $product['product_id'] ?>)" class="add-to-cart-btn">
-                        <i class="fas fa-plus"></i>
-                    </a>
-
-                </div>
-
-                <div class="product">
-                    
-                    <img src="img/products/f6.png" alt="first-aid-kit">
-
-                    <div class="description">
-                        <span>Omron</span>
-                        <h5>Omron NE-C28 CompAir Compressor Nebulizer</h5>
-                        <h4>5700 Taka</h4>                        
-                    </div>
-
-                    <a href="javascript:void(0);" onclick="addToCart(<?= $product['product_id'] ?>)" class="add-to-cart-btn">
-                        <i class="fas fa-plus"></i>
-                    </a>
-
-                </div>
-
-                <div class="product">
-                    
-                    <img src="img/products/f7.png" alt="first-aid-kit">
-
-                    <div class="description">
-                        <span>Laerdal Medical</span>
-                        <h5>CPR Mask</h5>
-                        <h4>900 Taka</h4>                        
-                    </div>
-
-                    <a href="javascript:void(0);" onclick="addToCart(<?= $product['product_id'] ?>)" class="add-to-cart-btn">
-                        <i class="fas fa-plus"></i>
-                    </a>
-
-                </div>
-
-                <div class="product">
-                    
-                    <img src="img/products/f8.png" alt="first-aid-kit">
-
-                    <div class="description">
-                        <span>Savlon</span>
-                        <h5>Savlon Liquid Antiseptic 1000ml</h5>
-                        <h4>280 Taka</h4>                        
-                    </div>
-
-                    <a href="javascript:void(0);" onclick="addToCart(<?= $product['product_id'] ?>)" class="add-to-cart-btn">
-                        <i class="fas fa-plus"></i>
-                    </a>
-
-                </div>
+                            <a href="javascript:void(0);" onclick="addToCart(<?= $product['product_id'] ?>)" class="add-to-cart-btn">
+                                <i class="fas fa-plus"></i>
+                            </a>
+                        </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
 
             </div>
 
@@ -339,6 +247,8 @@
             </div>
 
         </footer>
+
+        <div id="notification"></div>
 
         <script src="script.js"></script>
     </body>

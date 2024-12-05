@@ -63,6 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $productDetails = $stmt->fetch(PDO::FETCH_ASSOC);
     }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -75,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <link rel="shortcut icon" type="image" href="img/short_logo.png">
         <title>Product Management</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-        <link rel="stylesheet" href="style.css?v=26">
+        <link rel="stylesheet" href="style.css?v=31">
     </head>
 
     <body>
@@ -90,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <li><a href="manage-bank.php" >Blood Bank</a></li>
                     <li><a href="manage-ambulance.php">Ambulance</a></li>
                     <li><a href="manage-checkout.php">Checkout</a></li>
-                    <!-- <li><a href="about.php">About</a></li> -->
+                    <li><a href="logout.php">Log Out</a></li>
                     <!-- <li><a href="cart.html"><i class="fa fa-cart-plus" aria-hidden="true"></i> -->
                     <!-- <li id="lg-bag"><a href="cart.php"><i class="fas fa-cart-shopping"></i></a></li> -->
                     <a href="#" id="close"><i class="fas fa-xmark"></i></a>
@@ -121,11 +122,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="text" name="product_category" required>
 
                 <label for="product_price">Product Price</label>
-                <input type="number" name="product_price" required>
+                <input type="number" name="product_price" class="error1" required>
 
                 <label for="product_image">Product Image</label>
                 <div class="upload-area">
-                    <input type="file" name="product_image" accept="image/*" required>
+                    <input type="file" name="product_image" accept="image/*" class="error1" required>
                 </div>
 
                 <button type="submit">Add Product</button>
@@ -164,7 +165,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </div>
 
-        <footer class="section-p1">
+        <!-- <footer class="section-p1">
             
             <div class="col">
 
@@ -222,7 +223,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <p>copyright - 2023 MySpace</p>
             </div>
 
-        </footer>
+        </footer> -->
 
         <script src="script.js"></script>
     </body>

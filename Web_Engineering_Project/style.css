@@ -242,8 +242,9 @@ body {
 
 #feature .fe-box h6{
   padding: 9px 8px 6px 8px;
+  font-size: 13px;
   line-height: 1;
-  border-radius: 4px;
+  border-radius: 6px;
   color: white;
   background-color: #0caa0c;
 }
@@ -308,7 +309,7 @@ body {
 }
 
 #product1 .product img{
-  width: 80%;
+  width: 60%;
   border-radius: 20px;
 }
 
@@ -332,6 +333,12 @@ body {
   padding-top: 7px;
   font-size: 15px;
   font-weight: 700;
+}
+
+#product1 .product .description .taka{
+  color: #000;
+  font-weight: 600;
+  font-size: 22px;
 }
 
 #product1 .product a i{
@@ -1047,6 +1054,12 @@ tr:nth-child(even) {
   margin: 0 30px;
 }
 
+.cart-item-details .taka{
+  color: #000;
+  /* font-weight: 600; */
+  font-size: 22px;
+}
+
 .cart-item-quantity {
   flex: 1;
   text-align: center;
@@ -1055,6 +1068,13 @@ tr:nth-child(even) {
   flex: 1;
   text-align: right;
 }
+
+.cart-item-total .taka{
+  color: #000;
+  /* font-weight: 600; */
+  font-size: 22px;
+}
+
 .cart-item-actions {
   flex: 1;
   text-align: right;
@@ -1082,6 +1102,12 @@ input[type="number"] {
   font-weight: bold;
   text-align: center;
 }
+
+.total-bill .taka{
+  font-size: 29px;
+  /* font-weight: 500; */
+}
+
 .empty-cart-message {
   text-align: center;
   font-size: 1.2em;
@@ -1110,6 +1136,22 @@ input[type="number"] {
 .cart form button:hover{
   color: #ffff;
   background-color: #0caa0c;
+}
+
+.proceed{
+  text-decoration: none;
+  font-weight: 700;
+  color: #FF8080;
+  border: 2px solid #FF8080;
+  border-radius: 10px;
+  padding: 15px 20px;
+  margin: 30px 0;
+  transition: 0.3s ease;
+}
+
+.proceed:hover{
+  color: #ffff;
+  background-color: #FF8080;
 }
 
 #notification {
@@ -1207,6 +1249,7 @@ input[type="number"] {
 #login-button {
   width: 100%;
   padding: 10px;
+  font-weight: 600;
   background-color: transparent;
   color: #0caa0c;
   /* border: none; */
@@ -1233,10 +1276,84 @@ input[type="number"] {
   color: #FF8080;
   text-decoration: none;
   font-weight: bold;
+  cursor: not-allowed;
 }
 
 #register-container a:hover {
-  text-decoration: underline;
+  /* text-decoration: underline; */
+  color: #6d2727;
+}
+
+.form-container {
+  width: 100%;
+  max-width: 560px;
+  padding: 40px 50px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.form-container h4{
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.form-container form label{
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #555;
+}
+
+.form-container form input{
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1em;
+}
+
+#password-container{
+  display: flex;
+  align-items: center;
+}
+
+#password-container input{
+  flex: 1;
+}
+
+.toggle-password {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 2.2em;
+  margin-left: 5px;
+}
+
+.login-container {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.login-container a {
+  color: #FF8080;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#customer-register-container {
+  text-align: center;
+  margin-top: 15px;
+}
+
+#customer-register-container a {
+  color: #FF8080;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 /* admin dashboard */
@@ -1283,6 +1400,16 @@ input[type="number"] {
   background: white;
 }
 
+.form-container .error1{
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #0caa0c;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  background: white;
+}
+
 .form-container #product_price{
   text-align: left;
 }
@@ -1290,6 +1417,7 @@ input[type="number"] {
 .form-container button{
   width: 100%;
   padding: 12px;
+  font-weight: 700;
   background-color: transparent;
   color: #0caa0c;
   border: 2px solid #0caa0c;
@@ -1333,7 +1461,7 @@ input[type="number"] {
   border-radius: 6px;
 }
 
-.form-container .error-message { background-color: #e63946; }
+.product-management .form-container .error-message { background-color: #e63946; }
 .success-message { background-color: #4caf50; }
 
 .form-container .product-details {
@@ -1343,6 +1471,314 @@ input[type="number"] {
 .form-container .product-details img {
   max-width: 200px;
   margin-top: 10px;
+}
+
+/* blood bank management */
+
+.blood-management{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  padding: 20px;
+  gap: 0;
+}
+
+.blood-management .form-container{
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 25px;
+  /* background: linear-gradient(135deg, #ffffff, #f0f4f8); */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  /* transition: 0.3s ease; */
+}
+
+.blood-management .form-container h2{
+  text-align: center;
+  color: #d32f2f;
+  margin-bottom: 40px;
+}
+
+.blood-management .form-container label{
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: bold;
+  color: #000000;
+  font-size: 15px;
+}
+
+.blood-management input[type="text"], input[type="number"], input[type="file"] {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #d32f2f;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  background: white;
+}
+
+.blood-management .form-container #product_price{
+  text-align: left;
+}
+
+.blood-management .form-container button{
+  width: 100%;
+  padding: 12px;
+  font-weight: 700;
+  background-color: transparent;
+  color: #d32f2f;
+  border: 2px solid #d32f2f;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s ease;
+  margin-top: 10px;
+}
+
+.blood-management .form-container button:hover{
+  color: white;
+  background-color: #d32f2f;
+}
+
+.blood-management .form-container .upload-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px dashed #f3c6c6;
+  padding: 15px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+}
+
+.blood-management .form-container .upload-area:hover {
+  border-color: #d32f2f;
+}
+
+.upload-area label {
+  cursor: pointer;
+  color: #d32f2f;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.blood-management .form-container .error-message, .success-message {
+  color: #fff;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+}
+
+.blood-management .form-container .error-message { background-color: #e63946; }
+.success-message { background-color: #4caf50; }
+
+.blood-management .form-container .product-details {
+  margin-top: 20px;
+}
+
+.blood-management .form-container .product-details img {
+  max-width: 200px;
+  margin-top: 10px;
+}
+
+.blood-management .form-container .search-results{
+  margin: 20px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+/* ambulance management */
+
+.ambulance-management .form-container h2{
+  color: #FF8080;
+}
+
+.ambulance-management input[type="text"], input[type="number"], input[type="file"] {
+  border: 1px solid #FF8080;
+}
+
+.ambulance-management .form-container button{
+  color: #FF8080;
+  border: 2px solid #FF8080;
+  font-weight: 700;
+}
+
+.ambulance-management .form-container button:hover{
+  color: #ffff;
+  background-color: #FF8080;
+}
+
+.ambulance-management .form-container .upload-area{
+  border: 2px dashed #d68282;
+}
+
+.ambulance-management .form-container .upload-area:hover{
+  border-color: #FF8080;
+}
+
+.ambulance-management .form-container .upload-area label{
+  color: #FF8080;
+}
+
+/* checkout */
+
+.checkout-function{
+  margin: 20px 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  /* height: 80vh; */
+}
+
+.checkout-function h1, h2, h3 {
+  text-align: center;
+}
+
+.checkout-function .taka{
+  font-size: 20px;
+  color: #000;
+}
+
+.checkout-function h2{
+  font-size: 30px;
+  color: #0caa0c;
+  margin: 20px 0;
+}
+
+.checkout-function .container{
+  text-align: center;
+  width: 100%;
+  max-width: 700px;
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.checkout-function .container .cart-table-wrapper {
+  overflow-x: auto;
+}
+
+.checkout-function table{
+  margin: 20px auto;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.checkout-function table, th, td{
+  border: 1px solid #0caa0c;
+}
+
+.checkout-function table th{
+  color: white;
+  font-weight: 600;
+  background-color: #0caa0c;
+}
+
+.checkout-function table th, td{
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 40px;
+  padding-right: 40px;
+  text-align: center;
+}
+
+.checkout-function .form-group{
+  margin-bottom: 15px;
+}
+
+.checkout-function .form-group label{
+  display: block;
+  text-align: left;
+}
+
+.checkout-function .form-group input,
+.checkout-function .form-group textarea{
+  /* width: auto; */
+  padding: 10px;
+  margin: 5px auto;
+  display: block;
+  text-align: left;
+}
+
+.checkout-function .submit-btn{
+  padding: 10px 15px;
+  font-weight: 500;
+  background-color: transparent;
+  color: #0caa0c;
+  border: 2px solid #0caa0c;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.checkout-function .submit-btn:hover{
+  color: #ffff;
+  background-color: #0caa0c;
+}
+
+/* checkout management */
+
+.checkout-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 30px;
+  overflow-x: auto;
+  height: 100vh;
+}
+
+.checkout-container h2{
+  font-size: 30px;
+  color: #0caa0c;
+  margin-bottom: 20px;
+}
+
+.checkout-container .table-container{
+  width: 100%;
+  overflow-x: auto;
+  margin: 0 auto;
+}
+
+.checkout-container .table-container table{
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.checkout-container table th{
+  color: white;
+  background-color: #0caa0c;
+}
+
+.checkout-container table th, tr{
+  padding: 10px;
+  text-align: center;
+}
+
+.checkout-container table, th, tr{
+  border: 2px solid #0caa0c;
+}
+
+.checkout-container .status-button{
+  padding: 10px 20px;
+  font-weight: 600;
+  color: #0caa0c;
+  border: 2px solid #0caa0c;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: 0.3s ease;
+}
+
+.checkout-container .status-button:hover{
+  color: white;
+  background-color: #0caa0c;
 }
 
 @media (max-width:1024px) {
@@ -1650,6 +2086,38 @@ input[type="number"] {
 
   .product-management{
     flex-direction: column;
+  }
+
+  .checkout-function .container .cart-table-wrapper{
+    overflow-x: auto;
+    display: block;
+    width: 100%;
+  }
+
+  .checkout-function .container table{
+    display: block;
+    width: max-content;
+    min-width: 100%;
+  }
+
+  .blood-management{
+    flex-direction: column;
+  }
+
+  .ambulance-management{
+    flex-direction: column;
+  }
+
+  .checkout-container{
+    overflow-x: auto;
+  }
+
+  .checkout-container table{
+    min-width: 800px;
+  }
+
+  .checkout-container .table-container table{
+    font-size: 12px;
   }
 
 }

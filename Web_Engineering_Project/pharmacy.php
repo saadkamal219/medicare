@@ -54,7 +54,7 @@
     <link rel="shortcut icon" type="image" href="img/short_logo.png">
     <title>Pharmacy</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css?v=21">
+    <link rel="stylesheet" href="style.css?v=35">
 
     <script>
         async function addToCart(productId) {
@@ -147,12 +147,12 @@
             <?php else: ?>
                 <?php foreach ($products as $product): ?>
                     <div class="product">
-                        <img src="image.php?id=<?php echo htmlspecialchars($product['product_id']); ?>" alt="<?php echo htmlspecialchars($product['product_name']); ?>">
+                    <img src="<?php echo $product['product_image']; ?>" alt="Product Image">
                         
                         <div class="description">
                             <span><?php echo htmlspecialchars($product['product_brand']); ?></span>
                             <h5><?php echo htmlspecialchars($product['product_name']); ?></h5>
-                            <h4><?php echo htmlspecialchars($product['product_price']); ?> Taka</h4>
+                            <h4><?php echo htmlspecialchars($product['product_price']); ?> <span class="taka">৳</span></h4>
                         </div>
 
                         <a href="javascript:void(0);" onclick="addToCart(<?= $product['product_id'] ?>)" class="add-to-cart-btn">

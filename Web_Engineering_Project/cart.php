@@ -55,9 +55,9 @@ foreach ($cart_items as $row) {
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" type="image" href="img/short_logo.png">
-        <title>About Us</title>
+        <title>Cart</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-        <link rel="stylesheet" href="style.css?v=19">
+        <link rel="stylesheet" href="style.css?v=37">
     </head>
 
     <body>
@@ -106,7 +106,7 @@ foreach ($cart_items as $row) {
                                 
                                 <div class="cart-item-details">
                                     <strong><?= htmlspecialchars($row['product_name']) ?></strong>
-                                    <span>Unit Price: <?= htmlspecialchars($row['product_price']) ?> Taka</span>
+                                    <span>Unit Price: <?= htmlspecialchars($row['product_price']) ?><span class="taka">৳</span></span>
                                 </div>
                                 
                                 
@@ -117,7 +117,7 @@ foreach ($cart_items as $row) {
                                 
                                 
                                 <div class="cart-item-total">
-                                    <span>$<?= $row['product_price'] * $row['product_quantity'] ?> Taka</span>
+                                    <span>$<?= $row['product_price'] * $row['product_quantity'] ?> <span class="taka">৳</span></span>
                                 </div>
 
                                  
@@ -133,9 +133,13 @@ foreach ($cart_items as $row) {
 
                 
                 <div class="total-bill">
-                    Total Bill: <?= number_format($total_bill, 2) ?> Taka
-                </div>
+                    Total Bill: <?= number_format($total_bill, 2) ?> <span class="taka">৳</span>
+                </div><br>
+
             <?php endif; ?>
+
+            <a href="customer_login.php" class="proceed">Proceed to Checkout</a>
+
         </section>
 
         <footer class="section-p1">

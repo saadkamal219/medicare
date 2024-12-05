@@ -2,13 +2,13 @@
 require 'database_connection.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = $_POST['username'];
-    $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+    $username = $_POST['customer_user_name'];
+    $password = password_hash($_POST['customer_password'], PASSWORD_BCRYPT);
 
-    $stmt = $pdo->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
+    $stmt = $pdo->prepare("INSERT INTO customer (customer_user_name, customer_password) VALUES (?, ?)");
     try {
         $stmt->execute([$username, $password]);
-        header('Location: login.php');
+        header('Location: customer_login.php');
         exit;
     } catch (PDOException $e) {
         $error = "Username already exists. Please log in instead.";
@@ -22,22 +22,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image" href="img/short_logo.png">
-    <link rel="stylesheet" href="style.css?v=40">
-    <title>Admin Register</title>
+    <link rel="stylesheet" href="style.css?v=41">
+    <title>Customer Register</title>
 </head>
 <body>
     
-    <ssection class="holder">
+    <section class="holder">
 
         <div class="form-container">
             <h4>Register</h4>
             <form method="POST">
                 <label for="username">Username</label>
-                <input type="text" name="username" placeholder="Enter your username" required>
+                <input type="text" name="customer_user_name" placeholder="Enter your username" required>
                 
                 <label for="password">Password</label>
                 <div class="password-container">
-                    <input type="password" name="password" id="password" placeholder="Enter your password" required>
+                    <input type="password" name="customer_password" id="password" placeholder="Enter your password" required>
                     <button type="button" id="toggle-password" class="toggle-password">🔒</button>
                 </div>
                 
@@ -47,12 +47,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </form>
 
             <div class="login-container">
-                <p>Already have an account? <a href="login.php" class="login-button">Login</a></p>
+                <p>Already have an account? <a href="customer_login.php" class="login-button">Login</a></p>
                 
             </div>
         </div>
 
-    </ssection>
+    </section>
 
     <script>
         const togglePassword = document.getElementById('toggle-password');

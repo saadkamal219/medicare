@@ -1,140 +1,146 @@
 <?php
-require 'database_connection.php';
+require 'database_connection.php'; // Include database connection
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['product_name'], $_FILES['product_image'])) {
-        $productName = $_POST['product_name'];
-        $productBrand = $_POST['product_brand'];
-        $productCategory = $_POST['product_category'];
-        $productPrice = $_POST['product_price'];
+// Handle the status update
+if (isset($_GET['update_status']) && isset($_GET['checkout_id'])) {
+    $newStatus = $_GET['update_status'];
+    $checkoutId = $_GET['checkout_id'];
 
-        // Handle image upload
-        $image = $_FILES['product_image'];
-        $imagePath = '';
+    try {
+        // Update the status in the checkout table
+        $stmt = $pdo->prepare("UPDATE checkout SET status = :status WHERE checkout_id = :checkout_id");
+        $stmt->execute([
+            ':status' => $newStatus,
+            ':checkout_id' => $checkoutId
+        ]);
 
-        // Check if image upload is successful
-        if ($image['error'] === UPLOAD_ERR_OK) {
-            $imageName = uniqid() . '_' . $image['name'];
-            $imagePath = 'uploads/' . $imageName;
+        // Fetch customer email to send the completion email if the status is 'Completed'
+        if ($newStatus == 'Completed') {
+            $stmt = $pdo->prepare("SELECT customer_email FROM checkout WHERE checkout_id = :checkout_id");
+            $stmt->execute([':checkout_id' => $checkoutId]);
+            $customer = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            // Ensure uploads directory exists
-            if (!is_dir('uploads')) {
-                mkdir('uploads', 0777, true);
+            if ($customer) {
+                // Send the completion email to the customer
+                $to = $customer['customer_email'];
+                $subject = "Order Completion Notification";
+                $message = "Dear Customer,\n\nYour order has been marked as completed. Thank you for shopping with us.\n\nBest Regards,\nMedicare Team";
+                $headers = "From: no-reply@medicare.com";
+
+                // Send the email
+                if (mail($to, $subject, $message, $headers)) {
+                    $message = "Checkout status updated to Completed and email sent successfully!";
+                } else {
+                    $message = "Checkout status updated to Completed, but email sending failed.";
+                }
             }
-
-            // Move the uploaded file to the desired location
-            if (move_uploaded_file($image['tmp_name'], $imagePath)) {
-                // Insert product data into the database
-                $stmt = $pdo->prepare("INSERT INTO medical_products (product_name, product_brand, product_category, product_image, product_price) 
-                                       VALUES (?, ?, ?, ?, ?)");
-                $stmt->execute([$productName, $productBrand, $productCategory, $imagePath, $productPrice]);
-
-                $successMessage = "Product added successfully!";
-            } else {
-                $errorMessage = "Failed to upload image. Please try again.";
-            }
-        } else {
-            $errorMessage = "No image uploaded or an error occurred during upload.";
         }
-    }
 
-    // For product removal
-    if (isset($_POST['remove_product'])) {
-        $productId = $_POST['product_id'];
-
-        if (!empty($productId)) {
-            $stmt = $pdo->prepare("DELETE FROM medical_products WHERE product_id = ?");
-            $stmt->execute([$productId]);
-            $removeMessage = "Product removed successfully!";
-        } else {
-            $removeMessage = "Please provide a valid product ID.";
-        }
-    }
-
-    // For product search
-    if (isset($_POST['search_product'])) {
-        $productId = $_POST['product_id'];
-        $productName = $_POST['product_name'];
-        $productCategory = $_POST['product_category'];
-
-        $stmt = $pdo->prepare("SELECT * FROM medical_products WHERE product_id = ? OR product_name = ? OR product_category = ?");
-        $stmt->execute([$productId, $productName, $productCategory]);
-
-        $productDetails = $stmt->fetch(PDO::FETCH_ASSOC);
+        // Redirect to the same page after update to refresh the status
+        header('Location: manage-checkout.php');
+        exit;
+    } catch (PDOException $e) {
+        $message = "Error updating status: " . $e->getMessage();
     }
 }
+
+// Fetch all checkout records
+try {
+    $stmt = $pdo->query("SELECT * FROM checkout");
+    $checkouts = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    $message = "Error fetching checkout records: " . $e->getMessage();
+}
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="style.css?v=26">
+    <link rel="shortcut icon" type="image" href="img/short_logo.png">
+    <title>Admin - Checkout Management</title>
+    <link rel="stylesheet" href="style.css?v=44">
 </head>
+
 <body>
 
-    <div class="product-management">
-        <!-- Upload Product Section -->
-        <div class="form-container">
-            <h2>Add New Product</h2>
-            <?php if (isset($successMessage)) echo "<p class='success-message'>$successMessage</p>"; ?>
-            <?php if (isset($errorMessage)) echo "<p class='error-message'>$errorMessage</p>"; ?>
-            <form method="POST" enctype="multipart/form-data">
-                <label for="product_name">Product Name</label>
-                <input type="text" name="product_name" required>
-
-                <label for="product_brand">Product Brand</label>
-                <input type="text" name="product_brand" required>
-
-                <label for="product_category">Product Category</label>
-                <input type="text" name="product_category" required>
-
-                <label for="product_price">Product Price</label>
-                <input type="number" name="product_price" required>
-
-                <label for="product_image">Product Image</label>
-                <div class="upload-area">
-                    <input type="file" name="product_image" accept="image/*" required>
-                </div>
-
-                <button type="submit">Add Product</button>
-            </form>
+    <section id="header">
+        <a href="#" id="mobile-version"><img src="img/logo.png" class="logo" alt="medicare-logo"></a>
+        <div>
+            <ul id="navbar">
+                <li><a href="admindashboard.php">Products</a></li>
+                <li><a href="manage-bank.php">Blood Bank</a></li>
+                <li><a href="manage-ambulance.php">Ambulance</a></li>
+                <li><a href="manage-checkout.php" class="active">Checkout</a></li>
+                <li><a href="logout.php">Log Out</a></li>
+                <a href="#" id="close"><i class="fas fa-xmark"></i></a>
+            </ul>
         </div>
+        <div id="mobile">
+            <i id="bar" class="fas fa-outdent"></i>
+        </div>
+    </section>
 
-        <!-- Search and Remove Product Section -->
-        <div class="form-container">
-            <h2>Search & Remove Product</h2>
-            <?php if (isset($removeMessage)) echo "<p class='success-message'>$removeMessage</p>"; ?>
-            <form method="POST">
-                <label for="product_id">Product ID</label>
-                <input type="text" name="product_id" placeholder="Search by product ID">
+    <div class="checkout-container">
 
-                <label for="product_name">Product Name</label>
-                <input type="text" name="product_name" placeholder="Search by product name">
+        <!-- Display success or error message -->
+        <?php if (!empty($message)): ?>
+            <div class="message <?= isset($newStatus) ? 'success' : '' ?>">
+                <?= htmlspecialchars($message) ?>
+            </div>
+        <?php endif; ?>
 
-                <label for="product_category">Product Category</label>
-                <input type="text" name="product_category" placeholder="Search by product category">
+        <h2>Checkout Management</h2>
 
-                <button type="submit" name="search_product">Search Product</button>
-                <button type="submit" name="remove_product">Remove Product</button>
-            </form>
-
-            <!-- Display product details if found -->
-            <?php if (isset($productDetails)): ?>
-                <div class="product-details">
-                    <h3>Product Details</h3>
-                    <p><strong>Product ID:</strong> <?php echo $productDetails['product_id']; ?></p>
-                    <p><strong>Product Name:</strong> <?php echo $productDetails['product_name']; ?></p>
-                    <p><strong>Product Category:</strong> <?php echo $productDetails['product_category']; ?></p>
-                    <p><strong>Price:</strong> <?php echo $productDetails['product_price']; ?></p>
-                    <img src="<?php echo $productDetails['product_image']; ?>" alt="Product Image">
-                </div>
-            <?php endif; ?>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Checkout ID</th>
+                        <th>Customer Details</th>
+                        <th>Address</th>
+                        <th>Products</th>
+                        <th>Total Price</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($checkouts as $checkout): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($checkout['checkout_id']) ?></td>
+                            <td>
+                                <?= htmlspecialchars($checkout['customer_name']) ?><br>
+                                <?= htmlspecialchars($checkout['customer_phone']) ?><br>
+                                <?= htmlspecialchars($checkout['customer_email']) ?>
+                            </td>
+                            <td><?= htmlspecialchars($checkout['customer_address']) ?></td>
+                            <td><?= htmlspecialchars($checkout['product_names']) ?></td>
+                            <td><?= htmlspecialchars($checkout['total_price']) ?> ৳</td>
+                            <td><?= htmlspecialchars($checkout['status']) ?></td>
+                            <td>
+                                <form action="manage-checkout.php" method="get">
+                                    <input type="hidden" name="checkout_id" value="<?= $checkout['checkout_id'] ?>">
+                                    <select name="update_status" class="status-select">
+                                        <option value="Completed" <?= $checkout['status'] == 'Completed' ? 'selected' : '' ?>>Completed</option>
+                                        <option value="Canceled" <?= $checkout['status'] == 'Canceled' ? 'selected' : '' ?>>Canceled</option>
+                                    </select>
+                                    <button type="submit" class="status-button">Update Status</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
         </div>
     </div>
 
+    <script src="script.js"></script>
+
 </body>
+
 </html>
