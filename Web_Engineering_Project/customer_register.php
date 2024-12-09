@@ -37,8 +37,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 
                 <label for="password">Password</label>
                 <div class="password-container">
-                    <input type="password" name="customer_password" id="password" placeholder="Enter your password" required>
-                    <button type="button" id="toggle-password" class="toggle-password">🔒</button>
+                    <input type="text" name="customer_password" id="password" placeholder="Enter your password" required>
+                    <!-- <button type="button" id="toggle-password" class="toggle-password">🔒</button> -->
                 </div>
                 
                 <?php if (isset($error)) echo "<p class='error'>$error</p>"; ?>

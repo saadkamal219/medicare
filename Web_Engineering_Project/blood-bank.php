@@ -90,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <link rel="shortcut icon" type="image" href="img/short_logo.png">
         <title>Pharmacy</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-        <link rel="stylesheet" href="style.css?v=26">
+        <link rel="stylesheet" href="style.css?v=44">
     </head>
 
     <body>
@@ -211,7 +211,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </section>
     </main>
 
-        <footer class="section-p1">
+    <footer class="section-p1">
             
             <div class="col">
 
@@ -222,9 +222,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="follow">
                     <h4>Follow Us</h4>
                     <div class="icon">
-                        <i class="fas fa-facebook"></i>
-                        <i class="fas fa-twitter"></i>
-                        <i class="fas fa-youtube"></i>
+                        <!-- <i class="fas fa-square-facebook"></i>
+                        <i class="fas fa-instagram"></i>
+                        <i class="fas fa-youtube"></i> -->
+                        <img src="img/logo/Vector.png" alt="facebook">
+                        <img src="img/logo/Vector-1.png" alt="youtube">
+                        <img src="img/logo/Vector-2.png" alt="instagram">
                     </div>
                 </div>
                 
@@ -232,23 +235,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <div class="col">
 
-                <h4>About</h4>
-                <a href="about.php">About Us</a>
-                <a href="legal-information.php">Delivary Information</a>
-                <a href="legal-information.php">Privacy Policy</a>
-                <a href="legal-information.php">Terms and Conditions</a>
-                <a href="legal-information.php">Contact Us</a>
-
+                <h4>Quick Navigation</h4>
+                <a href="cart.php">View Cart</a>
+                <a href="blood-bank.php">Apply As Donor</a>
+                
             </div>
 
             <div class="col">
 
-                <h4>My Account</h4>
-                <a href="#">Sign In</a>
-                <a href="cart.php">View Cart</a>
-                <a href="#">My Wishlist</a>
-                <a href="#">Track My Order</a>
-                <a href="#">Help</a>
+                <h4>Further Information</h4>
+                <a href="about.php">About Us</a>
+                <!-- <a href="legal-information.php">Contact Us</a> -->
+                <a href="legal-information.php">Delivary Information</a>
+                <a href="legal-information.php">Privacy Policy</a>
+                <a href="legal-information.php">Terms and Conditions</a>
 
             </div>
 
@@ -266,7 +266,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
 
             <div class="copyright">
-                <p>copyright - 2023 MySpace</p>
+                <p>&copy copyright - 2024 MySpace</p>
             </div>
 
         </footer>

@@ -144,3 +144,79 @@ try {
 </body>
 
 </html>
+
+<?
+
+require 'database_connection.php'; 
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require 'vendor/autoload.php'; // Include PHPMailer if using Composer
+
+if (isset($_GET['update_status']) && isset($_GET['checkout_id'])) {
+    $newStatus = $_GET['update_status'];
+    $checkoutId = $_GET['checkout_id'];
+
+    try {
+        
+        $stmt = $pdo->prepare("UPDATE checkout SET status = :status WHERE checkout_id = :checkout_id");
+        $stmt->execute([
+            ':status' => $newStatus,
+            ':checkout_id' => $checkoutId
+        ]);
+
+        // START MODIFICATION
+        if ($newStatus == 'Completed') {
+            $stmt = $pdo->prepare("SELECT customer_email FROM checkout WHERE checkout_id = :checkout_id");
+            $stmt->execute([':checkout_id' => $checkoutId]);
+            $customer = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($customer) {
+                $to = $customer['customer_email'];
+                $subject = "Order Completion Notification";
+                $message = "Dear Customer,\n\nYour order has been marked as completed. Thank you for shopping with us.\n\nBest Regards,\nMedicare Team";
+                $headers = "From: no-reply@medicare.com";
+
+                // Use PHPMailer for reliable email delivery
+                $mail = new PHPMailer(true);
+                try {
+                    // SMTP Configuration
+                    $mail->isSMTP();
+                    $mail->Host = 'smtp.gmail.com';
+                    $mail->SMTPAuth = true;
+                    $mail->Username = 'medicare.org.bd@gmail.com'; // Sender's email
+                    $mail->Password = 'your-email-password'; // App password for Gmail
+                    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+                    $mail->Port = 587;
+
+                    // Email Settings
+                    $mail->setFrom('medicare.org.bd@gmail.com', 'Medicare');
+                    $mail->addAddress($to);
+                    $mail->Subject = $subject;
+                    $mail->Body = $message;
+
+                    // Send the email
+                    $mail->send();
+                    $message = "Checkout status updated to Completed and email sent successfully!";
+                } catch (Exception $e) {
+                    $message = "Checkout status updated to Completed, but email sending failed. Error: " . $mail->ErrorInfo;
+                }
+            }
+        }
+        // END MODIFICATION
+
+        header('Location: manage-checkout.php');
+        exit;
+    } catch (PDOException $e) {
+        $message = "Error updating status: " . $e->getMessage();
+    }
+}
+
+try {
+    $stmt = $pdo->query("SELECT * FROM checkout");
+    $checkouts = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    $message = "Error fetching checkout records: " . $e->getMessage();
+}
+?>
