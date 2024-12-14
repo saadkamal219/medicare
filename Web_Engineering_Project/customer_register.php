@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 
                 <label for="password">Password</label>
                 <div class="password-container">
-                    <input type="text" name="customer_password" id="password" placeholder="Enter your password" required>
+                    <input type="text" name="customer_password" id="password" placeholder="Enter your password" minlength="8" required>
                     <!-- <button type="button" id="toggle-password" class="toggle-password">🔒</button> -->
                 </div>
                 

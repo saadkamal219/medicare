@@ -8,23 +8,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $productCategory = $_POST['product_category'];
         $productPrice = $_POST['product_price'];
 
-        // Handle image upload
         $image = $_FILES['product_image'];
         $imagePath = '';
 
-        // Check if image upload is successful
         if ($image['error'] === UPLOAD_ERR_OK) {
             $imageName = uniqid() . '_' . $image['name'];
             $imagePath = 'uploads/' . $imageName;
 
-            // Ensure uploads directory exists
             if (!is_dir('uploads')) {
                 mkdir('uploads', 0777, true);
             }
 
-            // Move the uploaded file to the desired location
             if (move_uploaded_file($image['tmp_name'], $imagePath)) {
-                // Insert product data into the database
+                
                 $stmt = $pdo->prepare("INSERT INTO medical_products (product_name, product_brand, product_category, product_image, product_price) 
                                        VALUES (?, ?, ?, ?, ?)");
                 $stmt->execute([$productName, $productBrand, $productCategory, $imagePath, $productPrice]);
@@ -38,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    // For product removal
+    
     if (isset($_POST['remove_product'])) {
         $productId = $_POST['product_id'];
 
@@ -51,7 +47,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    // For product search
     if (isset($_POST['search_product'])) {
         $productId = $_POST['product_id'];
         $productName = $_POST['product_name'];
@@ -76,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <link rel="shortcut icon" type="image" href="img/short_logo.png">
         <title>Product Management</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-        <link rel="stylesheet" href="style.css?v=31">
+        <link rel="stylesheet" href="style.css?v=48">
     </head>
 
     <body>

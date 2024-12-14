@@ -1,11 +1,8 @@
 <?php
-// Database connection using PDO
 require 'database_connection.php';
 
-// Array of specific product IDs to fetch
-$productIds = [88, 89, 76, 77, 78, 79, 80, 81]; // Replace with the IDs of the products you want to display
+$productIds = [88, 89, 76, 77, 78, 79, 80, 81];
 
-// Fetch products by product_id
 try {
     $placeholders = rtrim(str_repeat('?,', count($productIds)), ',');
     $sql = "SELECT * FROM medical_products WHERE product_id IN ($placeholders)";
@@ -158,13 +155,6 @@ try {
             </div>
 
         </section>
-
-        <!-- <section id="banner" class="section-m1">
-            <h5>Presenting our new feature</h5>
-            <h3><snap id="ambulance">Ambulance</snap> Service <snap id="medi">ANYTIME</snap>/<snap id="care">ANYWHERE</snap></h3>
-            <h6>We proudly announce our new department of Ambulance Service. Now you can call for ambulance from anywhere and at anytime.</h6>
-            <button class="normal">Call for Ambulance</button>
-        </section> -->
 
         <section id="sm-banner" class="section-p1">
 

@@ -90,7 +90,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <li><a href="blood-bank.php">Blood Bank</a></li>
                     <li><a href="ambulance.php" class="active">Ambulance</a></li>
                     <li><a href="about.php">About</a></li>
-                    <!-- <li><a href="cart.html"><i class="fa fa-cart-plus" aria-hidden="true"></i> -->
                     <li id="lg-bag"><a href="cart.php"><i class="fas fa-cart-shopping"></i></a></li>
                     <a href="#" id="close"><i class="fas fa-xmark"></i></a>
                 </ul>
@@ -203,9 +202,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="follow">
                     <h4>Follow Us</h4>
                     <div class="icon">
-                        <!-- <i class="fas fa-square-facebook"></i>
-                        <i class="fas fa-instagram"></i>
-                        <i class="fas fa-youtube"></i> -->
                         <img src="img/logo/Vector.png" alt="facebook">
                         <img src="img/logo/Vector-1.png" alt="youtube">
                         <img src="img/logo/Vector-2.png" alt="instagram">
@@ -226,7 +222,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 <h4>Further Information</h4>
                 <a href="about.php">About Us</a>
-                <!-- <a href="legal-information.php">Contact Us</a> -->
                 <a href="legal-information.php">Delivary Information</a>
                 <a href="legal-information.php">Privacy Policy</a>
                 <a href="legal-information.php">Terms and Conditions</a>

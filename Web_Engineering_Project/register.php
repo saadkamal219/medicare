@@ -59,11 +59,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         const passwordField = document.getElementById('password');
 
         togglePassword.addEventListener('click', () => {
-            // Toggle password visibility
+        
             const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
             passwordField.setAttribute('type', type);
 
-            // Toggle button icon
             togglePassword.textContent = type === 'password' ? '🔒' : '🔓';
         });
     </script>

@@ -45,7 +45,7 @@ if (isset($_GET['update_status']) && isset($_GET['checkout_id'])) {
 }
 
 try {
-    $stmt = $pdo->query("SELECT * FROM checkout");
+    $stmt = $pdo->query("SELECT * FROM checkout ORDER BY checkout_id DESC");
     $checkouts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
     $message = "Error fetching checkout records: " . $e->getMessage();
@@ -112,7 +112,7 @@ try {
                             <th>Customer Details</th>
                             <th>Address</th>
                             <th>Products</th>
-                            <th>Total Price</th>
+                            <th class="extend">Total Price<br>[ <span id="total_taka">৳</span> ]</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -128,7 +128,7 @@ try {
                                 </td>
                                 <td><?= htmlspecialchars($checkout['customer_address']) ?></td>
                                 <td><?= htmlspecialchars($checkout['product_names']) ?></td>
-                                <td><?= htmlspecialchars($checkout['total_price']) ?> ৳</td>
+                                <td class="extend"><?= htmlspecialchars($checkout['total_price']) ?></td>
                                 <td><?= htmlspecialchars($checkout['status']) ?></td>
                                 <td>
                                     <form action="manage-checkout.php" method="get">

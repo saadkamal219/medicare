@@ -28,7 +28,6 @@
                     <li><a href="blood-bank.php">Blood Bank</a></li>
                     <li><a href="ambulance.php">Ambulance</a></li>
                     <li><a href="about.php" class="active">About</a></li>
-                    <!-- <li><a href="cart.html"><i class="fa fa-cart-plus" aria-hidden="true"></i> -->
                     <li id="lg-bag"><a href="cart.php"><i class="fas fa-cart-shopping"></i></a></li>
                     <a href="#" id="close"><i class="fas fa-xmark"></i></a>
                 </ul>
@@ -57,14 +56,6 @@
                 <h2>Who We Are</h2>
                 <p>Welcome to <strong><snap id="one">Medi</snap><snap id="two">care</snap></strong>, your comprehensive healthcare solution designed to make life-saving medical services accessible to everyone. At <snap id="one">Medi</snap><snap id="two">care</snap>, we aim to simplify and streamline healthcare by integrating essential services into a single, easy-to-use platform. Whether it's <strong>purchasing medicines, finding blood donors, arranging emergency medical transportation, or consulting doctors</strong>, <snap id="one">Medi</snap><snap id="two">care</snap> is here to help. Our Vision To revolutionize the healthcare landscape by creating a connected ecosystem that empowers individuals and communities to manage their health effortlessly.<br>
                 <strong>Our Mission:</strong> To leverage technology to provide reliable and efficient healthcare solutions, ensuring quick access to medicines, emergency assistance, and medical consultations whenever needed.
-                <!-- <strong>What Drives Us: </strong><br>
-                Compassion: Putting people first in everything we do.
-                Innovation: Harnessing technology to redefine healthcare access.
-                Reliability: Delivering trusted solutions you can count on.
-                Accessibility: Making quality healthcare available to all. -->
-
-                <!-- Our Impact To date, we have connected over 10,000 blood donors, delivered 50,000+ prescriptions, and facilitated countless emergency responses across the country.
-                Join Us Be part of a growing community dedicated to transforming healthcare. With Medicare, you are never alone on your health journey.  -->
                 </p>
 
                 <br>
@@ -115,9 +106,6 @@
                 <div class="follow">
                     <h4>Follow Us</h4>
                     <div class="icon">
-                        <!-- <i class="fas fa-square-facebook"></i>
-                        <i class="fas fa-instagram"></i>
-                        <i class="fas fa-youtube"></i> -->
                         <img src="img/logo/Vector.png" alt="facebook">
                         <img src="img/logo/Vector-1.png" alt="youtube">
                         <img src="img/logo/Vector-2.png" alt="instagram">
@@ -138,7 +126,6 @@
 
                 <h4>Further Information</h4>
                 <a href="about.php">About Us</a>
-                <!-- <a href="legal-information.php">Contact Us</a> -->
                 <a href="legal-information.php">Delivary Information</a>
                 <a href="legal-information.php">Privacy Policy</a>
                 <a href="legal-information.php">Terms and Conditions</a>

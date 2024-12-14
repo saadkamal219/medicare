@@ -1294,8 +1294,15 @@ input[type="number"] {
 }
 
 #password-container {
+  position: relative;
   display: flex;
   align-items: center;
+}
+
+#password{
+  width: 100%;
+  padding-right: 40px;
+  box-sizing: border-box;
 }
 
 #password-container input {
@@ -1303,11 +1310,21 @@ input[type="number"] {
 }
 
 #toggle-password {
+  position: absolute;
+  right: 10px;
+  bottom: 7px;
   background: none;
   border: none;
   cursor: pointer;
   font-size: 1.2em;
   margin-left: 5px;
+  padding: 0;
+  outline: none;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* color: #0caa0c; */
 }
 
 #toggle-password:hover {
@@ -1483,6 +1500,7 @@ input[type="number"] {
   margin-bottom: 20px;
   font-size: 14px;
   background: white;
+  text-align: left;
 }
 
 .form-container #product_price{
@@ -1838,6 +1856,15 @@ input[type="number"] {
 
 .checkout-container table, th, tr{
   border: 2px solid #0caa0c;
+}
+
+/* .checkout-container table .extend{
+  padding-left: 100px;
+  padding-right: 100px;
+} */
+
+#total_taka{
+  font-size: 20px;
 }
 
 .checkout-container .status-button{

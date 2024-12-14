@@ -128,9 +128,6 @@
                 <div class="follow">
                     <h4>Follow Us</h4>
                     <div class="icon">
-                        <!-- <i class="fas fa-square-facebook"></i>
-                        <i class="fas fa-instagram"></i>
-                        <i class="fas fa-youtube"></i> -->
                         <img src="img/logo/Vector.png" alt="facebook">
                         <img src="img/logo/Vector-1.png" alt="youtube">
                         <img src="img/logo/Vector-2.png" alt="instagram">
@@ -151,7 +148,6 @@
 
                 <h4>Further Information</h4>
                 <a href="about.php">About Us</a>
-                <!-- <a href="legal-information.php">Contact Us</a> -->
                 <a href="legal-information.php">Delivary Information</a>
                 <a href="legal-information.php">Privacy Policy</a>
                 <a href="legal-information.php">Terms and Conditions</a>

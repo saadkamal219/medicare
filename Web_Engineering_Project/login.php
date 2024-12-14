@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css?v=34">
+    <link rel="stylesheet" href="style.css?v=48">
     <link rel="shortcut icon" type="image" href="img/short_logo.png">
     <title>Admin Login</title>
 
@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <label for="password">Password</label>
                 <div id="password-container">
                     <input type="password" name="password" id="password" placeholder="Enter your password" required>
-                    <button type="button" id="toggle-password" style="font-size: 25px;">🔒</button>
+                    <button type="button" id="toggle-password" style="font-size: 25px;" aria-label="Toggle password visibility">🔒</button>
                 </div>
                 
                 <?php if (isset($error)) echo "<p id='login-error'>$error</p>"; ?>
