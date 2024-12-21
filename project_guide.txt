@@ -1,0 +1,11 @@
+Medicare Project Guide
+
+1. Clone the Project from github
+2. Open xampp [Open mySQL and Apache Server]
+3. Create a database named "medicare"
+4. Upload the medicare.sql file to xampp
+Anoter approach if sep 3 fails
+3. Go to the Data folder inside the Web_Engineering_Project folder.
+4. Create tables according to the csv files
+5. Launch index.php at the folder location.
+

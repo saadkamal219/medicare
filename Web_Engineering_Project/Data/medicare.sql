@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 09, 2024 at 09:39 AM
+-- Generation Time: Dec 21, 2024 at 02:47 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -5667,9 +5667,7 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`cart_id`, `product_id`, `product_name`, `product_brand`, `product_category`, `product_price`, `product_quantity`) VALUES
-(19, 78, 'Accu-Chek Active Blood Glucose Monitoring System', 'Accu-Chek', 'medical_device', 3199.00, 1),
-(20, 89, 'DT103 Electronic Thermometer', 'Zeal Mercury Thermometer', 'Medical Device', 450.00, 2),
-(21, 80, 'CPR Mask', 'Laerdal Medical', 'medical_device', 900.00, 2);
+(29, 93, '3M Littmann Stethoscope Classic', 'Littmann', 'medical_device', 13600.00, 3);
 
 -- --------------------------------------------------------
 
@@ -5695,7 +5693,10 @@ CREATE TABLE `checkout` (
 INSERT INTO `checkout` (`checkout_id`, `customer_name`, `customer_phone`, `customer_email`, `customer_address`, `product_names`, `total_price`, `status`) VALUES
 (51, 'Abdur Rahman', '01897765041', 'abdurrahman@yahoo.com', 'Road 10, Sector 10, Uttara, Dhaka', 'Savlon Liquid Antiseptic 1000ml, Aluminum First Aid Kit, Fingertip YK-80A Pulse Rate Oximeter, CPR Mask', 5630, 'Canceled'),
 (52, 'saad', '01897765041', 'saadkamal219@gmail.com', '212 East Brahmondi, Narsingdi Sadar, Narsingdi', 'Accu-Chek Active Blood Glucose Monitoring System, DT103 Electronic Thermometer', 4099, 'Canceled'),
-(53, 'saad', '10562400125', 'saad@gmail.com', 'mirpur', 'Accu-Chek Active Blood Glucose Monitoring System, DT103 Electronic Thermometer, CPR Mask', 5899, 'Pending');
+(53, 'saad', '10562400125', 'saad@gmail.com', 'mirpur', 'Accu-Chek Active Blood Glucose Monitoring System, DT103 Electronic Thermometer, CPR Mask', 5899, 'Completed'),
+(54, 'Jonny', '09785265410', 'jonnyjonny@yespapa.com', 'Sugar Factory, Disney', 'VWash Intimate Hygiene Wash', 800, 'Completed'),
+(55, 'Sadekur', '01511111111', 'saad@gmail.com', '26/5', 'VWash Intimate Hygiene Wash, Blood Glucode Test Strips Red 25\'s Pack, CPR Mask', 2160, 'Pending'),
+(56, 'Sadek', '01897765041', 'sadek@gmail.com', 'test\r\n', '3M Littmann Stethoscope Classic', 40800, 'Canceled');
 
 -- --------------------------------------------------------
 
@@ -5718,7 +5719,9 @@ INSERT INTO `customer` (`customer_id`, `customer_user_name`, `customer_password`
 (1, 'sadek', '$2y$10$YRvHwnIjS6UUmAgow1JulOggWiinvYJr/hjMKWWHfii0KlCjvav1i', '2024-12-04 05:27:12'),
 (2, 'abdur', '$2y$10$zXEsr75u5X3qwmkUx1dZUO5Ng/UD.8oJ6clvVEfc6I0AJILuOSwYO', '2024-12-04 07:31:43'),
 (3, 'saad', '$2y$10$UUKvSEpoEXG53XUzXIIvX.qlHy8MScco6YQTtOirNSKT9jU7cZr7e', '2024-12-08 15:42:01'),
-(4, 'ayon', '$2y$10$xsy50QS4PTZFIPupy/n7pePgWFGKLBxgBo2hCPhgjaV2yISgs7qoS', '2024-12-09 07:42:55');
+(4, 'ayon', '$2y$10$xsy50QS4PTZFIPupy/n7pePgWFGKLBxgBo2hCPhgjaV2yISgs7qoS', '2024-12-09 07:42:55'),
+(5, 'Jhon', '$2y$10$sZYj3NSXqrD0qDvsOmTFD.7UCC3gxUvo166xQOrChlXSDaCp09nhC', '2024-12-11 20:50:58'),
+(6, 'Jonny', '$2y$10$xgh3gKJYODoLOmka3I.m9.5qS0wGfBclrNgS2js77.x9rWq13RW32', '2024-12-11 20:51:52');
 
 -- --------------------------------------------------------
 
@@ -5748,7 +5751,53 @@ INSERT INTO `medical_products` (`product_id`, `product_name`, `product_brand`, `
 (80, 'CPR Mask', 'Laerdal Medical', 'medical_device', 0x75706c6f6164732f363734633735666465346262365f66372e6a7067, 900, '2024-12-01 14:43:09'),
 (81, 'Savlon Liquid Antiseptic 1000ml', 'Savlon', 'mother_and_baby', 0x75706c6f6164732f363734633736343935656237325f66382e6a7067, 280, '2024-12-01 14:44:25'),
 (88, 'Aluminum First Aid Kit', 'First Aid Only', 'Medical Device', 0x75706c6f6164732f363734663336646162333433635f66312e706e67, 2500, '2024-12-03 16:50:34'),
-(89, 'DT103 Electronic Thermometer', 'Zeal Mercury Thermometer', 'Medical Device', 0x75706c6f6164732f363734663336663939656162665f66322e706e67, 450, '2024-12-03 16:51:05');
+(89, 'DT103 Electronic Thermometer', 'Zeal Mercury Thermometer', 'Medical Device', 0x75706c6f6164732f363734663336663939656162665f66322e706e67, 450, '2024-12-03 16:51:05'),
+(91, 'TENS ES-210 Therapy Device', 'Jumper', 'medical_device', 0x75706c6f6164732f363735393465366633613937615f54454e532045532d3231302054686572617079204465766963652e706e67, 2500, '2024-12-11 08:33:51'),
+(92, 'Clinical Thermometer', 'Toshiba', 'medical_device', 0x75706c6f6164732f363735393465396263353130365f436c696e6963616c20546865726d6f6d657465722e706e67, 450, '2024-12-11 08:34:35'),
+(93, '3M Littmann Stethoscope Classic', 'Littmann', 'medical_device', 0x75706c6f6164732f363735393465643033643437365f334d204c6974746d616e6e2053746574686f73636f706520436c61737369632e706e67, 13600, '2024-12-11 08:35:28'),
+(94, 'Foot Massager Shiatsu', 'Beurer', 'medical_device', 0x75706c6f6164732f363735393466306665396230635f466f6f74204d6173736167657220536869617473752e706e67, 6429, '2024-12-11 08:36:31'),
+(95, 'TANITA HA-650 Weighting Scale', 'Tanita', 'medical_device', 0x75706c6f6164732f363735393466326561363638385f54414e4954412048412d36353020576569676874696e67205363616c652e706e67, 900, '2024-12-11 08:37:02'),
+(96, 'Blood Glucode Test Strips Red 25\'s Pack', 'Glucoleader', 'medical_device', 0x75706c6f6164732f363735393466353531343538315f426c6f6f6420476c75636f6465205465737420537472697073205265642032355f73205061636b2e706e67, 460, '2024-12-11 08:37:41'),
+(97, 'Portable Graphic Fetal Doppler Ultrasound', 'Jumper', 'medical_device', 0x75706c6f6164732f363735393466376134353531355f506f727461626c65204772617068696320466574616c20446f70706c657220556c747261736f756e642e706e67, 4000, '2024-12-11 08:38:18'),
+(98, 'Napa (Paracetamol 500 mg) ', 'Beximco', 'headache', 0x75706c6f6164732f363735393466613637323530355f4e617061202850617261636574616d6f6c20353030206d6729202d2e706e67, 12, '2024-12-11 08:39:02'),
+(99, 'Migranil (Pizotifen 0.5 mg)', 'Square', 'headache', 0x75706c6f6164732f363735393466633438376630655f4d696772616e696c202850697a6f746966656e20302e35206d6729202e706e67, 30, '2024-12-11 08:39:32'),
+(100, 'Myolax (Tolperisone Hydrochloride 50 mg)', 'Incepta', 'headache', 0x75706c6f6164732f363735393466653538663337345f4d796f6c61782028546f6c70657269736f6e6520487964726f63686c6f72696465203530206d67292e706e67, 90, '2024-12-11 08:40:05'),
+(101, 'Sumatriptan (Nomigran 50 mg)', 'Ambee', 'headache', 0x75706c6f6164732f363735393466666639316464635f53756d617472697074616e20284e6f6d696772616e203530206d6729202e706e67, 60, '2024-12-11 08:40:31'),
+(102, 'Tynor (Paracetamol 650 mg)', 'ACI Ltd', 'headache', 0x75706c6f6164732f363735393530323430303637335f54796e6f72202850617261636574616d6f6c20363530206d67292e706e67, 20, '2024-12-11 08:41:08'),
+(104, 'Migrex (Sumatriptan 100 mg)', 'ACME', 'headache', 0x75706c6f6164732f363735393530616566303734395f4d6967726578202853756d617472697074616e20313030206d6729202e706e67, 95, '2024-12-11 08:43:26'),
+(105, 'Spasmopan (Paracetamol and Orphenadrine)', 'Renata', 'headache', 0x75706c6f6164732f363735393530636163616230665f537061736d6f70616e202850617261636574616d6f6c20616e64204f727068656e616472696e6529202e706e67, 70, '2024-12-11 08:43:54'),
+(106, 'Dolorol (Ibuprofen 400 mg)', 'ACME', 'headache', 0x75706c6f6164732f363735393530653862323261645f446f6c6f726f6c202849627570726f66656e20343030206d6729202e706e67, 25, '2024-12-11 08:44:24'),
+(108, 'Esomeprazole', 'Beximco', 'stomachache', 0x75706c6f6164732f363735393533323539643234335f45736f6d657072617a6f6c652e706e67, 80, '2024-12-11 08:53:57'),
+(109, 'Folic Acid (5 mg)', 'Folac', 'pregnancy', 0x75706c6f6164732f363735393533346264386263315f466f6c69632041636964202835206d67292e706e67, 20, '2024-12-11 08:54:35'),
+(110, 'KY Jelly Personal Lubricant', 'KY', 'intimacy', 0x75706c6f6164732f363735393533633362393165345f4b59204a656c6c7920506572736f6e616c204c7562726963616e742e706e67, 850, '2024-12-11 08:56:35'),
+(111, 'Omeprazole', 'Eskayef', 'stomachache', 0x75706c6f6164732f363735393831643436643931315f4f6d657072617a6f6c652e706e67, 50, '2024-12-11 12:13:08'),
+(112, 'Rabeprazole', 'Beximco', 'stomachache', 0x75706c6f6164732f363735393831663438656237645f526162657072617a6f6c652e706e67, 90, '2024-12-11 12:13:40'),
+(113, 'Ispaghula Husk with Mebeverine', 'ACME', 'stomachache', 0x75706c6f6164732f363735393832306465383034365f497370616768756c61204875736b2077697468204d656265766572696e652e706e67, 80, '2024-12-11 12:14:05'),
+(114, 'Simethicone', 'ACME', 'stomachache', 0x75706c6f6164732f363735393832643938663935655f53696d65746869636f6e652e706e67, 40, '2024-12-11 12:17:29'),
+(115, 'Alverine Citrate', 'Square', 'stomachache', 0x75706c6f6164732f363735393832663439316536325f416c766572696e6520436974726174652e706e67, 80, '2024-12-11 12:17:56'),
+(116, 'Iron Supplements (with Folic Acid)', 'Iron Plus', 'pregnancy', 0x75706c6f6164732f363735393833323532646664665f49726f6e20537570706c656d656e747320287769746820466f6c69632041636964292e706e67, 30, '2024-12-11 12:18:45'),
+(117, 'Calcium Carbonate + Vitamin D3', 'Calbo-D', 'pregnancy', 0x75706c6f6164732f363735393833343838643730655f43616c6369756d20436172626f6e617465202b20566974616d696e2044332e706e67, 70, '2024-12-11 12:19:20'),
+(118, 'Progest (Dydrogesterone 10 mg)', 'Popular', 'pregnancy', 0x75706c6f6164732f363735393833366463323232385f50726f676573742028447964726f6765737465726f6e65203130206d67292e706e67, 250, '2024-12-11 12:19:57'),
+(119, 'MM Kit (Mifepristone + Misoprostol)', 'Ziska', 'pregnancy', 0x75706c6f6164732f363735393833386534386539645f4d4d204b697420284d69666570726973746f6e65202b204d69736f70726f73746f6c292e706e67, 700, '2024-12-11 12:20:30'),
+(120, 'Iodine Supplements', 'Iodimax', 'pregnancy', 0x75706c6f6164732f363735393833616262356661385f496f64696e6520537570706c656d656e74732e706e67, 30, '2024-12-11 12:20:59'),
+(121, 'Multivitamin with DHA', 'NatalCare', 'pregnancy', 0x75706c6f6164732f363735393833643161356334385f4d756c7469766974616d696e2077697468204448412e706e67, 150, '2024-12-11 12:21:37'),
+(122, 'Zinc Supplements (Zinc Sulfate)', 'Zincon', 'pregnancy', 0x75706c6f6164732f363735393833666132356666635f5a696e6320537570706c656d656e747320285a696e632053756c66617465292e706e67, 30, '2024-12-11 12:22:18'),
+(126, 'Mebeverine Hydrochloride', 'Navana', 'stomachache', 0x75706c6f6164732f363735396634643231373536625f4d656265766572696e6520487964726f63686c6f726964652e706e67, 70, '2024-12-11 20:23:46'),
+(127, 'Pantoprazole', 'Incepta', 'stomachache', 0x75706c6f6164732f363735396635303563313462645f50616e746f7072617a6f6c652e706e67, 60, '2024-12-11 20:24:37'),
+(128, 'Mothercare Baby Oil (300 ml)', 'Mothercare?', 'mother_and_baby', 0x75706c6f6164732f363735396636356534636337665f4d6f74686572636172652042616279204f696c2028333030206d6c292e706e67, 700, '2024-12-11 20:30:22'),
+(129, 'Parachute Just for Baby Lotion (200 ml)', 'Parachute', 'mother_and_baby', 0x75706c6f6164732f363735396636393837353864325f506172616368757465204a75737420666f722042616279204c6f74696f6e2028323030206d6c292e706e67, 340, '2024-12-11 20:31:20'),
+(130, 'Johnson’s Baby Soap (75 g)', 'Johnson\'s', 'mother_and_baby', 0x75706c6f6164732f363735396636633365653730385f4a6f686e736f6ee2809973204261627920536f6170202837352067292e706e67, 220, '2024-12-11 20:32:03'),
+(131, 'Aveeno Baby Lotion (227 g)', 'Aveeno', 'mother_and_baby', 0x75706c6f6164732f363735396636646530633565345f417665656e6f2042616279204c6f74696f6e20283232372067292e706e67, 1300, '2024-12-11 20:32:30'),
+(132, 'Baby Finger Toothbrush and Box', 'Generic', 'mother_and_baby', 0x75706c6f6164732f363735396637306238393030355f426162792046696e67657220546f6f7468627275736820616e6420426f782e706e67, 100, '2024-12-11 20:33:15'),
+(133, 'Newborn Baby Head Shaping Pillow', 'Generic', 'mother_and_baby', 0x75706c6f6164732f363735396637323738366531355f4e6577626f726e204261627920486561642053686170696e672050696c6c6f772e706e67, 590, '2024-12-11 20:33:43'),
+(134, 'Waterproof Baby Bedding with Mosquito Net', 'Generic', 'mother_and_baby', 0x75706c6f6164732f363735396637343731383664335f576174657270726f6f6620426162792042656464696e672077697468204d6f73717569746f204e65742e706e67, 920, '2024-12-11 20:34:15'),
+(136, 'Peniton Oinment', 'Hamdard Labratories (Waqf)', 'intimacy', 0x75706c6f6164732f363735396639363136363962395f50656e69746f6e204f696e6d656e742e706e67, 270, '2024-12-11 20:43:13'),
+(137, 'Clomiphene Citrate (Clomid)', 'Sanofi', 'intimacy', 0x75706c6f6164732f363735396639383039323230305f436c6f6d697068656e6520436974726174652028436c6f6d6964292e706e67, 100, '2024-12-11 20:43:44'),
+(138, 'VWash Intimate Hygiene Wash', 'VWash', 'intimacy', 0x75706c6f6164732f363735396639396533633735645f565761736820496e74696d6174652048796769656e6520576173682e706e67, 400, '2024-12-11 20:44:14'),
+(139, 'Zestra Arousal Oils', 'Zestra', 'intimacy', 0x75706c6f6164732f363735396639626265343363655f5a65737472612041726f7573616c204f696c732e706e67, 3500, '2024-12-11 20:44:43'),
+(140, 'Viagra (Sildenafil Citrate)', 'Viagra', 'intimacy', 0x75706c6f6164732f363735396661323537656532355f566961677261202853696c64656e6166696c2043697472617465292e706e67, 500, '2024-12-11 20:46:29'),
+(141, 'Durex Play Massage 2-in-1 Gel', 'Durex', 'intimacy', 0x75706c6f6164732f363735396661343338653432615f447572657820506c6179204d61737361676520322d696e2d312047656c2e706e67, 1200, '2024-12-11 20:46:59'),
+(142, 'Fuego FemPower Intimacy Lubricant Gel', 'ViMulti', 'intimacy', 0x75706c6f6164732f363735396661383564333662615f467565676f2046656d506f77657220496e74696d616379204c7562726963616e742047656c2e706e67, 2500, '2024-12-11 20:48:05');
 
 -- --------------------------------------------------------
 
@@ -5771,7 +5820,8 @@ CREATE TABLE `request_data` (
 
 INSERT INTO `request_data` (`name`, `phone`, `nid`, `pickup`, `upazila`, `created_at`) VALUES
 ('Labib', '01897765041', '4569871236', 'Road 20, Uttara Sector 10', 'Uttara', '2024-12-01 07:18:07'),
-('Sadek', '01897765041', '4569871236', 'Eastern Housing Bus Stand, Birulia', 'Savar', '2024-12-01 07:18:45');
+('Sadek', '01897765041', '4569871236', 'Eastern Housing Bus Stand, Birulia', 'Savar', '2024-12-01 07:18:45'),
+('Sadek', '01897765041', '4569871236', 'Eastern Housing Bus Stand, Birulia', 'Savar', '2024-12-12 10:37:37');
 
 -- --------------------------------------------------------
 
@@ -5860,25 +5910,25 @@ ALTER TABLE `user_data`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `checkout`
 --
 ALTER TABLE `checkout`
-  MODIFY `checkout_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `checkout_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `medical_products`
 --
 ALTER TABLE `medical_products`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=143;
 
 --
 -- AUTO_INCREMENT for table `users`
